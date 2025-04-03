@@ -1,10 +1,10 @@
-import { AIChatCompletionResponse } from "src/common/openai/interfaces/ai-chat-completion-response.interface";
+import { AIChatCompletionFullResponse } from "src/common/openai/interfaces/chat-completion-full-response.interface";
 import { ChatCompletionResponse } from '../interfaces/chat-completion-response.interface';
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class ChatCompletionHandler {
-    transformResponse(response: AIChatCompletionResponse): ChatCompletionResponse {
+    transformResponse(response: AIChatCompletionFullResponse): ChatCompletionResponse {
         const choices = response.choices;
         const messages = choices.length === 0 ? [] : choices.map((choice, index) => ({
             index: index,

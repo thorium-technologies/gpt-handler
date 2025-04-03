@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
 import { OpenAiStaticConfig } from '../config/openai-static.config';
-import { AIChatCompletionResponse } from './interfaces/ai-chat-completion-response.interface';
+import { AIChatCompletionFullResponse } from './interfaces/chat-completion-full-response.interface';
 
 @Injectable()
 export class OpenAiService {
@@ -14,10 +14,10 @@ export class OpenAiService {
     });
   }
 
-  async sendPrompt(prompt: string): Promise<AIChatCompletionResponse> {
+  async sendPrompt(prompt: string): Promise<AIChatCompletionFullResponse> {
     return await this.openai.chat.completions.create({
       model: OpenAiStaticConfig.MODEL,
       messages: [{ role: OpenAiStaticConfig.MESSAGE_ROLE, content: prompt }],
-    }) as AIChatCompletionResponse;
+    }) as AIChatCompletionFullResponse;
   }
 }

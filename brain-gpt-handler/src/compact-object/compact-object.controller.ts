@@ -8,7 +8,6 @@ export class CompactObjectController {
 
   @Post()
   async generateCode(@Body() dto: CompactObjectDto) {
-    const result = await this.compactObjectService.getCompactObjectCode(dto.language);
-    return result; // { codeSnippet: "some python code..." }
+    return await this.compactObjectService.getCompactObjectCode(dto.language);
   }
 }
