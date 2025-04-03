@@ -1,4 +1,4 @@
-export interface AIChatCompletionResponse {
+export interface AIChatCompletionFullResponse {
     id:                 string;
     object:             string;
     created:            number;

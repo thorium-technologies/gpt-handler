@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AIChatCompletionResponse } from '../../common/openai/interfaces/ai-chat-completion-response.interface';
+import { AIChatCompletionFullResponse } from '../../common/openai/interfaces/chat-completion-full-response.interface';
 import { CompactObjectResponse } from '../interfaces/compact-object-response.interface';
 
 /**
@@ -8,7 +8,7 @@ import { CompactObjectResponse } from '../interfaces/compact-object-response.int
  */
 @Injectable()
 export class CompactObjectHandler {
-  transformResponse(aiResponse: AIChatCompletionResponse): CompactObjectResponse {
+  transformResponse(aiResponse: AIChatCompletionFullResponse): CompactObjectResponse {
     const [firstChoice] = aiResponse.choices;
 
     return {

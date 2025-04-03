@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OpenAiService } from 'src/common/openai/openai.service';
-import { ChatCompletionHandler } from './response-handlers/chat-completion.handler';
-import { ChatCompletionResponse } from './interfaces/chat-completion-response.interface';
+import { ChatCompletionHandler } from '../common/openai/response-handlers/chat-completion.handler';
+import { ChatCompletionResponse } from '../common/openai/interfaces/chat-completion-response.interface';
 
 @Injectable()
 export class EnhanceCodeService {
