@@ -9,7 +9,8 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useState } from 'react';
 import { SxProps, Theme } from '@mui/material/styles';
-import { DEFAULT_SNIPPET_LANGUAGE } from '../../../core/constants/lenguage';
+import { DEFAULT_SNIPPET_LANGUAGE } from '../../../core/constants/language';
+import { NotificationAlert } from './notification-alert';
 
 interface CodeSnippetProps {
     code: string;
@@ -19,6 +20,7 @@ interface CodeSnippetProps {
 
 export const CodeSnippet = ({ code, language = DEFAULT_SNIPPET_LANGUAGE, sx }: CodeSnippetProps) => {
     const [copied, setCopied] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const theme = useTheme();
 
     const handleCopy = async () => {
@@ -28,56 +30,73 @@ export const CodeSnippet = ({ code, language = DEFAULT_SNIPPET_LANGUAGE, sx }: C
             setTimeout(() => setCopied(false), 1500);
         } catch (err) {
             console.error('Failed to copy code:', err);
+            setError('Failed to copy code to clipboard.');
         }
     };
 
+    const handleCloseAlert = () => {
+        setError(null);
+    };
+
     return (
-        <Paper
-            variant="outlined"
-            sx={{
-                bgcolor: theme.palette.background.paper,
-                color: theme.palette.text.primary,
-                fontFamily: 'monospace',
-                overflow: 'hidden',
-                borderRadius: theme.shape.borderRadius,
-                boxShadow: theme.shadows[1],
-                ...sx, // override or extend with consumer styles
-            }}
-        >
-            <Box
+        <>
+            {error && (
+                <Box sx={{ mt: 3 }}>
+                    <NotificationAlert
+                        severity="error"
+                        message={error}
+                        onClose={handleCloseAlert}
+                    />
+                </Box>
+            )}
+
+            <Paper
+                variant="outlined"
                 sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    px: 2,
-                    py: 1,
-                    bgcolor: theme.palette.grey[200],
-                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    bgcolor: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                    fontFamily: 'monospace',
+                    overflow: 'hidden',
+                    borderRadius: theme.shape.borderRadius,
+                    boxShadow: theme.shadows[1],
+                    ...sx, // override or extend with consumer styles
                 }}
             >
-                <Typography variant="caption" color="text.secondary">
-                    {language}
-                </Typography>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        px: 2,
+                        py: 1,
+                        bgcolor: theme.palette.grey[200],
+                        borderBottom: `1px solid ${theme.palette.divider}`,
+                    }}
+                >
+                    <Typography variant="caption" color="text.secondary">
+                        {language}
+                    </Typography>
 
-                <Tooltip title="Copied" open={copied} disableFocusListener disableHoverListener disableTouchListener>
-                    <IconButton size="small" onClick={handleCopy} color="primary">
-                        <ContentCopyIcon fontSize="small" />
-                    </IconButton>
-                </Tooltip>
-            </Box>
+                    <Tooltip title="Copied" open={copied} disableFocusListener disableHoverListener disableTouchListener>
+                        <IconButton size="small" onClick={handleCopy} color="primary">
+                            <ContentCopyIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
+                </Box>
 
-            <Box
-                component="pre"
-                sx={{
-                    m: 0,
-                    p: 2,
-                    whiteSpace: 'pre-wrap',
-                    wordBreak: 'break-word',
-                    fontSize: '0.875rem',
-                }}
-            >
-                <code>{code}</code>
-            </Box>
-        </Paper>
+                <Box
+                    component="pre"
+                    sx={{
+                        m: 0,
+                        p: 2,
+                        whiteSpace: 'pre-wrap',
+                        wordBreak: 'break-word',
+                        fontSize: '0.875rem',
+                    }}
+                >
+                    <code>{code}</code>
+                </Box>
+            </Paper>
+        </>
     );
 };

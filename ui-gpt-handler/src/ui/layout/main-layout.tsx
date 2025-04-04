@@ -8,7 +8,9 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <Container>
+    <Container
+      sx={{ minHeight: '100vh', padding: 2 }}
+    >
        <PageTitle />
       {children}
     </Container>
