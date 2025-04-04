@@ -9,6 +9,7 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useState } from 'react';
 import { SxProps, Theme } from '@mui/material/styles';
+import { DEFAULT_SNIPPET_LANGUAGE } from '../../../core/constants/lenguage';
 
 interface CodeSnippetProps {
     code: string;
@@ -16,7 +17,7 @@ interface CodeSnippetProps {
     sx?: SxProps<Theme>;
 }
 
-export const CodeSnippet = ({ code, language = 'text', sx }: CodeSnippetProps) => {
+export const CodeSnippet = ({ code, language = DEFAULT_SNIPPET_LANGUAGE, sx }: CodeSnippetProps) => {
     const [copied, setCopied] = useState(false);
     const theme = useTheme();
 
