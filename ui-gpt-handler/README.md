@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+# 🧠 Monopage App - UI GPT Handler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page application built with React, TypeScript, Vite, and Material UI.  
+It uses a clean hexagonal architecture and applies SOLID principles to ensure maintainability, scalability, and readability.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Vite + SWC + React + TypeScript**
+- **Material UI (MUI)** for design system and components
+- **pnpm** as package manager
+- **Hexagonal Architecture** for scalable structure
+- **ESLint + Prettier** for consistent code quality
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📁 Project Structure
+
+```bash
+src/
+├── app/          # App entry point, ThemeProvider
+├── core/         # Shared logic (constants, theme, types)
+├── ui/           # Pages, layout, components (Tabs, Layouts, etc.)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+For a complete explanation of the structure, see the [Architecture](./docs/architecture.md) guide.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🚀 Getting Started
+
+```bash
+pnpm install
+pnpm dev
 ```
+
+## 📄 Documentation
+
+- 📐 [Architecture](./docs/architecture.md) — folder structure, boundaries, SOLID practices
+- 🎨 [Theming](./docs/theming.md) — light mode, MUI theme customization
+- 🧩 [Components](./docs/components.md) — reusable component philosophy
+- 🖋 [Code Style](./docs/code-style.md) — formatting, naming, lint rules
+
+## 📝 Notes
+
+This project uses @vitejs/plugin-react-swc for faster builds and HMR powered by [SWC](https://swc.rs/).
+ESLint is configured for TypeScript with the possibility to add React-specific rules.
+
