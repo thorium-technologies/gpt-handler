@@ -1,11 +1,19 @@
 import { Typography } from '@mui/material';
 import { CustomButton } from '../common/custom-button';
+import { CodeSnippet } from '../common/code-snippet-area';
 
 export const EnhanceCode = () => {
   const handleEnhanceClick = () => {
-    // Here you can invoke your service, API call, or any logic.
-    // For example: console.log('Enhance Code triggered!');
+    // Invoke your service, API call, or any logic here
+    console.log('Enhance Code triggered!');
   };
+
+  // Example snippet content
+  const sampleCode = `
+    function exampleEnhance() {
+      console.log("Enhanced code snippet goes here.");
+    }`
+  ;
 
   return (
     <>
@@ -13,10 +21,15 @@ export const EnhanceCode = () => {
         This is the content of the <strong>Enhance Code</strong> tab.
       </Typography>
 
-      {/* Position the FAB in the bottom-right corner. Adjust style as needed. */}
-      <div style={{ position: 'fixed', bottom: 16, right: 16 }}>
-        <CustomButton onClick={handleEnhanceClick} label="Enhance" />
-      </div>
+      <CodeSnippet
+        code={sampleCode}
+        language="JavaScript"
+        sx={{ mt: 3, mb: 2 }}
+      />
+      <CustomButton 
+        onClick={handleEnhanceClick} 
+        label="Enhance" 
+      />
     </>
   );
 };
