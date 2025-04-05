@@ -3,7 +3,7 @@ import { Tabs, Tab, Box } from '@mui/material';
 import { TAB_LABELS } from '../../../core/constants/ui';
 import { TabPanel } from './tab-panel';
 import { EnhanceCode } from './enhance-code';
-import { CompactObject } from './compact-object';
+import { ProgrammingAlgorithm } from './programming-language';
 
 export const TabsContainer = () => {
   const [value, setValue] = useState(0);
@@ -25,7 +25,7 @@ export const TabsContainer = () => {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <CompactObject />
+        <ProgrammingAlgorithm />
       </TabPanel>
     </Box>
   );
