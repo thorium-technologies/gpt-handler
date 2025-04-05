@@ -8,7 +8,6 @@ export class EnhanceCodeController {
 
   @Post()
   async enhance(@Body() dto: EnhanceCodeDto) {
-    const optimizedCode = await this.enhanceCodeService.enhance(dto.code, dto.language);
-    return { optimizedCode };
+    return await this.enhanceCodeService.enhance(dto.code, dto.language);
   }
 }
