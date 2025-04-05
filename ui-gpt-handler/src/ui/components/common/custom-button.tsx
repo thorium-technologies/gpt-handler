@@ -4,7 +4,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 const STATIC_LABEL = 'Navigate';
 
-interface CustomButtonProps {
+interface CustomButtonProps extends React.ComponentProps<typeof Fab> {
   onClick: () => void; 
   label?: string;
 }
@@ -12,6 +12,7 @@ interface CustomButtonProps {
 export const CustomButton: React.FC<CustomButtonProps> = ({
   onClick,
   label = STATIC_LABEL,
+  ...props
 }) => {
   return (
     <Fab 
@@ -19,6 +20,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       color="secondary" 
       aria-label="custom-button" 
       onClick={onClick}
+      {...props}
     >
       <AutoAwesomeIcon sx={{ mr: 1 }} />
       {label}
