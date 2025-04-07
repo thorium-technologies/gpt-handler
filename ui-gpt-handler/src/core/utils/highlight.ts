@@ -1,5 +1,6 @@
 import { createHighlighter } from 'shiki';
 import { SUPPORTED_LANGUAGES } from '../constants/language';
+import { CODE_SNIPPET_LIGHT_THEME } from '../constants/ui';
 
 let cachedHighlighter: Awaited<ReturnType<typeof createHighlighter>>;
 
@@ -12,7 +13,7 @@ let cachedHighlighter: Awaited<ReturnType<typeof createHighlighter>>;
 export const highlightCode = async (code: string, lang: string): Promise<string> => {
     if (!cachedHighlighter) {
         cachedHighlighter = await createHighlighter({
-            themes: ['github-light'],
+            themes: [CODE_SNIPPET_LIGHT_THEME],
             langs: SUPPORTED_LANGUAGES,
         });
     }
@@ -20,7 +21,7 @@ export const highlightCode = async (code: string, lang: string): Promise<string>
         code,
         {
             lang,
-            theme: 'github-light',
+            theme: CODE_SNIPPET_LIGHT_THEME,
         }
     );
 };
