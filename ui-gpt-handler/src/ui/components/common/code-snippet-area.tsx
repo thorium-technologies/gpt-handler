@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
     Box,
     Typography,
@@ -7,10 +8,11 @@ import {
     useTheme,
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { useState } from 'react';
 import { SxProps, Theme } from '@mui/material/styles';
 import { DEFAULT_SNIPPET_LANGUAGE } from '../../../core/constants/language';
 import { NotificationAlert } from './notification-alert';
+import { highlightCode } from '../../../core/utils/highlight';
+import { stripCodeFences } from '../../../core/utils/strip-code-fences';
 
 interface CodeSnippetProps {
     code: string;
@@ -18,14 +20,40 @@ interface CodeSnippetProps {
     sx?: SxProps<Theme>;
 }
 
-export const CodeSnippet = ({ code, language = DEFAULT_SNIPPET_LANGUAGE, sx }: CodeSnippetProps) => {
+/**
+ * CodeSnippet component renders highlighted code using Shiki.
+ * It supports multiple languages and allows code to be copied.
+ */
+export const CodeSnippet = ({
+    code,
+    language = DEFAULT_SNIPPET_LANGUAGE,
+    sx,
+}: CodeSnippetProps) => {
     const [copied, setCopied] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [highlightedCode, setHighlightedCode] = useState<string>('');
     const theme = useTheme();
+
+    // Generate highlighted HTML whenever code or language changes.
+    useEffect(() => {
+        const runHighlight = async () => {
+            try {
+                const sanitizedCode = stripCodeFences(code);
+                const html = await highlightCode(sanitizedCode, language);
+                setHighlightedCode(html);
+            } catch (err) {
+                console.error('Failed to highlight code:', err);
+                setError('Failed to highlight code.');
+            }
+        };
+
+        runHighlight();
+    }, [code, language]);
 
     const handleCopy = async () => {
         try {
-            await navigator.clipboard.writeText(code);
+            const sanitizedCode = stripCodeFences(code);
+            await navigator.clipboard.writeText(sanitizedCode);
             setCopied(true);
             setTimeout(() => setCopied(false), 1500);
         } catch (err) {
@@ -59,7 +87,7 @@ export const CodeSnippet = ({ code, language = DEFAULT_SNIPPET_LANGUAGE, sx }: C
                     overflow: 'hidden',
                     borderRadius: theme.shape.borderRadius,
                     boxShadow: theme.shadows[1],
-                    ...sx, // override or extend with consumer styles
+                    ...sx, // allow consumers to override or extend styles
                 }}
             >
                 <Box
@@ -77,7 +105,13 @@ export const CodeSnippet = ({ code, language = DEFAULT_SNIPPET_LANGUAGE, sx }: C
                         {language}
                     </Typography>
 
-                    <Tooltip title="Copied" open={copied} disableFocusListener disableHoverListener disableTouchListener>
+                    <Tooltip
+                        title="Copied"
+                        open={copied}
+                        disableFocusListener
+                        disableHoverListener
+                        disableTouchListener
+                    >
                         <IconButton size="small" onClick={handleCopy} color="primary">
                             <ContentCopyIcon fontSize="small" />
                         </IconButton>
@@ -85,17 +119,17 @@ export const CodeSnippet = ({ code, language = DEFAULT_SNIPPET_LANGUAGE, sx }: C
                 </Box>
 
                 <Box
-                    component="pre"
+                    component="div"
                     sx={{
                         m: 0,
                         p: 2,
-                        whiteSpace: 'pre-wrap',
-                        wordBreak: 'break-word',
+                        overflowX: 'auto',
                         fontSize: '0.875rem',
+                        fontFamily: 'monospace',
                     }}
-                >
-                    <code>{code}</code>
-                </Box>
+                    // Using dangerouslySetInnerHTML is safe because we trust the output from Shiki.
+                    dangerouslySetInnerHTML={{ __html: highlightedCode }}
+                />
             </Paper>
         </>
     );
