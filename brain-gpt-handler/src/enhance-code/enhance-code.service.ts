@@ -11,8 +11,9 @@ export class EnhanceCodeService {
   ) {}
 
   async enhance(code: string, language: string): Promise<ChatCompletionResponse> {
-    const prompt = `You are an expert developer. Please optimize and enhance the following ${language} code:\n\n${code}`;
+    const prompt = `You are an expert developer. Please optimize and enhance the following ${language} code:\n\n${code}. Only return the code snippet.`;
     const response = await this.openAiService.sendPrompt(prompt);
     return this.chatCompletionHandler.transformResponse(response);
   }
 }
+

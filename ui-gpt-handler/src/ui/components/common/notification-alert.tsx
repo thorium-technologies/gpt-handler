@@ -20,7 +20,7 @@ export const NotificationAlert: React.FC<NotificationAlertProps> = ({
   severity,
   title,
   message,
-  variant = 'filled',
+  variant = 'standard',
   onClose,
 }) => {
   return (
