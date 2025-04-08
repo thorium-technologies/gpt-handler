@@ -15,12 +15,14 @@ src/
 │   ├── constants/  # Configuration and display constants
 │   ├── theme/      # Custom MUI theme, palette, typography, etc.
 │   └── types/      # Shared TypeScript types/interfaces
+├── infra/          # Infrastructure-related code (e.g., API clients, services)
 ├── ui/             # UI and presentation logic
 │   ├── pages/      # Route-level views (e.g., HomePage)
 │   ├── layout/     # General app layouts (e.g., MainLayout)
 │   └── components/ # All UI components
 │       ├── common/ # Reusable UI elements (buttons, inputs, etc.)
 │       └── Tabs/   # Tab-specific components (e.g., TabsContainer)
+├── utils/          # Utility functions and helpers
 └── docs/           # Documentation files
 ```
 
@@ -46,6 +48,16 @@ src/
 
 ---
 
+### `infra/`
+
+- Handles infrastructure-related code, such as:
+  - API clients and services
+  - External integrations
+- Acts as the adapter layer between the core logic and external systems
+- Keeps external dependencies isolated from the rest of the application
+
+---
+
 ### `ui/`
 
 - Handles UI and presentation logic only
@@ -57,6 +69,17 @@ src/
     - `Tabs/`: tab-specific components (e.g., `TabsContainer`, tab content)
 
 > ❗ Components should **not** contain business logic — only presentation, layout, and minimal interaction.
+
+---
+
+### `utils/`
+
+- Contains utility functions and helpers that are reusable across the app
+- Examples:
+  - String manipulation
+  - Date formatting
+  - API request helpers
+- These functions should be pure and independent of specific app logic
 
 ---
 

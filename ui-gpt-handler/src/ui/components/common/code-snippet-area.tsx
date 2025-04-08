@@ -23,6 +23,8 @@ interface CodeSnippetProps {
 /**
  * CodeSnippet component renders highlighted code using Shiki.
  * It supports multiple languages and allows code to be copied.
+ * 
+ * Highlighting is powered by [Shiki](https://shiki.style/guide/), which uses VS Code themes.
  */
 export const CodeSnippet = ({
     code,

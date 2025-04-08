@@ -82,6 +82,8 @@ In `CodeSnippet.tsx`, the background color and spacing are theme-driven:
 />
 ```
 
+> **Note**: Code snippets are formatted and highlighted using [Shiki](https://shiki.style/guide/), a syntax highlighter powered by VS Code themes.
+
 🚦 Extending the Theme
 You can extend the theme to include custom properties like:
 

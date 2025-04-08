@@ -6,6 +6,9 @@ let cachedHighlighter: Awaited<ReturnType<typeof createHighlighter>>;
 
 /**
  * Highlights code using Shiki with a VS Code-like theme.
+ * 
+ * Shiki documentation: https://shiki.style/guide/
+ * 
  * @param code - The code string to highlight.
  * @param lang - The programming language of the code.
  * @returns A Promise resolving to an HTML string with syntax highlighting.
