@@ -1,4 +1,4 @@
-import { FormControl, Grid, InputLabel, Select, MenuItem, TextField } from '@mui/material';
+import { FormControl, Grid, InputLabel, Select, MenuItem, TextField, Skeleton } from '@mui/material';
 import { useState } from 'react';
 import { CodeSnippet } from '../common/code-snippet-area';
 import { CustomButton } from '../common/custom-button';
@@ -66,11 +66,18 @@ export const ProgrammingAlgorithm = () => {
         />
       </Grid>
       <Grid size={{ xs: 12, md: 7 }}>
-        <CodeSnippet
-          code={loading ? 'Loading...' : code}
-          language={language}
-          sx={{ mb: 2, height: '60vh', overflow: 'auto' }}
-        />
+        {loading ? (
+          <Skeleton
+            variant="rounded"
+            sx={{ mb: 2, height: '60vh', overflow: 'auto' }}
+          />
+        ) : (
+          <CodeSnippet
+            code={code}
+            language={language}
+            sx={{ mb: 2, height: '60vh', overflow: 'auto' }}
+          />
+        )}
       </Grid>
     </Grid>
   );
