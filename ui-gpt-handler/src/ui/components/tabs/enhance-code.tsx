@@ -7,7 +7,7 @@ import { enhanceCode } from '../../../infra/api/enhance/enhance-api';
 import { LANGUAGE_LABELS } from '../../../core/constants/language';
 
 export const EnhanceCode = () => {
-  const [codeInput, setCodeInput] = useState('for i in range(0, 10): print(i)');
+  const [codeInput, setCodeInput] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
