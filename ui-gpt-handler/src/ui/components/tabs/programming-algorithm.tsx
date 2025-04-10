@@ -11,7 +11,7 @@ export const ProgrammingAlgorithm = () => {
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleCompactClick = async () => {
+  const handleGenerateAlgorithm = async () => {
     try {
       setLoading(true);
       const response = await generateProgrammingAlgorithm({ language, algorithm_name });
@@ -26,9 +26,12 @@ export const ProgrammingAlgorithm = () => {
   return (
     <Grid
       container
-      spacing={4}
+      spacing={3}
       sx={{
         mt: 4,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
       }}
     >
       <Grid size={{ xs: 12, md: 4 }}>
@@ -60,7 +63,7 @@ export const ProgrammingAlgorithm = () => {
           />
         </FormControl>
         <CustomButton
-          onClick={handleCompactClick}
+          onClick={handleGenerateAlgorithm}
           label={loading ? "Generating..." : "Generate programming algorithm"}
           disabled={loading || !language || !algorithm_name}
         />

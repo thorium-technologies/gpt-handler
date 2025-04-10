@@ -59,4 +59,3 @@ pnpm dev
 
 This project uses @vitejs/plugin-react-swc for faster builds and HMR powered by [SWC](https://swc.rs/).  
 ESLint is configured for TypeScript with the possibility to add React-specific rules.
-

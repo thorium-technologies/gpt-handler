@@ -3,10 +3,10 @@ import { PaletteOptions } from '@mui/material/styles';
 export const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#1976d2', // Customize your main brand color
+    main: '#2E8B62',
   },
   secondary: {
-    main: '#9c27b0',
+    main: '#0DDE8A',
   },
   background: {
     default: '#f5f5f5',
