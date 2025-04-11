@@ -17,8 +17,10 @@ export const TabsContainer = () => {
     <Box
       sx={{
         width: '100%',
+        mb: '2.5vw',
+        padding: 1,
         background: theme.gradients.primary,
-        borderRadius: 2,
+        borderRadius: theme.shape.borderRadius,
         boxShadow: 1,
       }}
     >

@@ -52,7 +52,7 @@ export const ProgrammingAlgorithm = () => {
             ))}
           </Select>
           <TextField
-            label="Algorithm"
+            label="Algorithm description"
             id='algorithm'
             fullWidth
             multiline
@@ -68,7 +68,7 @@ export const ProgrammingAlgorithm = () => {
           disabled={loading || !language || !algorithm_name}
         />
       </Grid>
-      <Grid size={{ xs: 12, md: 7 }}>
+      <Grid size={{ xs: 12, md: 8 }}>
         {loading ? (
           <Skeleton
             variant="rounded"

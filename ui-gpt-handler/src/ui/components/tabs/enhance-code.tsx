@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormControl, Grid, InputLabel, Select, MenuItem, TextField, Box} from '@mui/material';
+import { FormControl, Grid, InputLabel, Select, MenuItem, TextField, Box, Skeleton } from '@mui/material';
 import { CustomButton } from '../common/custom-button';
 import { CodeSnippet } from '../common/code-snippet-area';
 import { NotificationAlert } from '../common/notification-alert';
@@ -29,9 +29,18 @@ export const EnhanceCode = () => {
   };
 
   return (
-    <Grid container spacing={4} sx={{ mt: 4 }}>
-      {/* Left Column: Language selection, code input, button, and alert */} 
-      <Grid size={{ xs: 12, md: 4 }}>
+    <Grid
+      container
+      spacing={3}
+      sx={{
+        mt: 4,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+      }}
+    >
+      {/* Left Column: Language selection, code input, button, and alert */}
+      <Grid size={{ xs: 12, md: 6 }}>
         <FormControl fullWidth sx={{ mb: 3 }}>
           <InputLabel id="enhance-language-select-label">Programming Language</InputLabel>
           <Select
@@ -52,6 +61,7 @@ export const EnhanceCode = () => {
           <TextField
             label="Code to Enhance"
             multiline
+            rows={10}
             fullWidth
             variant="outlined"
             sx={{ mb: 3 }}
@@ -76,13 +86,20 @@ export const EnhanceCode = () => {
         )}
       </Grid>
 
-      {/* Right Column: Enhanced code snippet */} 
-      <Grid size={{ xs: 10, md: 7 }}>
-        <CodeSnippet
-          code={loading ? 'Loading...' : result}
-          language={selectedLanguage || 'python'}
-          sx={{ mb: 2, height: '60vh', overflow: 'auto' }}
-        />
+      {/* Right Column: Enhanced code snippet */}
+      <Grid size={{ xs: 12, md: 6 }}>
+        {loading ? (
+          <Skeleton
+            variant="rounded"
+            sx={{ mb: 2, height: '60vh', overflow: 'auto' }}
+          />
+        ) : (
+          <CodeSnippet
+            code={result}
+            language={selectedLanguage || 'python'}
+            sx={{ mb: 2, height: '60vh', overflow: 'auto' }}
+          />
+        )}
       </Grid>
     </Grid>
   );
