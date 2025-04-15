@@ -89,6 +89,8 @@ export const CodeSnippet = ({
                     overflow: 'hidden',
                     borderRadius: theme.shape.borderRadius,
                     boxShadow: theme.shadows[1],
+                    display: 'flex',
+                    flexDirection: 'column',
                     ...sx, // allow consumers to override or extend styles
                 }}
             >
@@ -101,6 +103,7 @@ export const CodeSnippet = ({
                         py: 1,
                         bgcolor: theme.palette.grey[200],
                         borderBottom: `1px solid ${theme.palette.divider}`,
+                        flexShrink: 0, // Ensure the header does not shrink
                     }}
                 >
                     <Typography variant="caption" color="text.secondary">
@@ -123,9 +126,10 @@ export const CodeSnippet = ({
                 <Box
                     component="div"
                     sx={{
+                        flexGrow: 1, // Allow the code area to take up remaining space
+                        overflowY: 'auto', // Enable vertical scrolling
                         m: 0,
                         p: 2,
-                        overflowX: 'auto',
                         fontSize: '0.875rem',
                         fontFamily: 'monospace',
                     }}

@@ -6,6 +6,6 @@ export const muiTheme = createTheme({
   palette: lightPalette,
   typography,
   gradients: {
-    primary: 'linear-gradient(135deg,rgb(224, 253, 225) 0%,rgb(167, 250, 225) 100%)',
+    primary: 'linear-gradient(135deg,rgb(173, 250, 227) 0%, rgb(185, 255, 187) 100%)',
   },
 });

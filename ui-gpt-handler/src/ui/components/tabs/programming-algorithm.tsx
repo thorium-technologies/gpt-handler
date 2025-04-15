@@ -56,10 +56,12 @@ export const ProgrammingAlgorithm = () => {
             id='algorithm'
             fullWidth
             multiline
+            rows={2}
             variant="outlined"
             sx={{ mb: 3 }}
             value={algorithm_name}
             onChange={(e) => setAlgorithm(e.target.value)}
+            spellCheck="false"
           />
         </FormControl>
         <CustomButton
@@ -78,7 +80,7 @@ export const ProgrammingAlgorithm = () => {
           <CodeSnippet
             code={code}
             language={language}
-            sx={{ mb: 2, height: '60vh', overflow: 'auto' }}
+            sx={{ mb: 2, height: '62vh', overflow: 'auto' }}
           />
         )}
       </Grid>
