@@ -1,6 +1,6 @@
 import { createHighlighter } from 'shiki';
-import { SUPPORTED_LANGUAGES } from '../constants/language';
-import { CODE_SNIPPET_LIGHT_THEME } from '../constants/ui';
+import { SUPPORTED_LANGUAGES } from '../../../core/constants/language';
+import { CODE_SNIPPET_LIGHT_THEME } from '../../../core/constants/highlight-code';
 
 let cachedHighlighter: Awaited<ReturnType<typeof createHighlighter>>;
 

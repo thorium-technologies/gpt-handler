@@ -8,17 +8,11 @@ import {
     useTheme,
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { SxProps, Theme } from '@mui/material/styles';
+import { CodeSnippetProps } from '../../../core/types/code';
 import { DEFAULT_SNIPPET_LANGUAGE } from '../../../core/constants/language';
 import { NotificationAlert } from './notification-alert';
-import { highlightCode } from '../../../core/utils/highlight';
+import { highlightCode } from '../../../infra/api/syntax/highlight.service';
 import { stripCodeFences } from '../../../core/utils/strip-code-fences';
-
-interface CodeSnippetProps {
-    code: string;
-    language?: string;
-    sx?: SxProps<Theme>;
-}
 
 /**
  * CodeSnippet component renders highlighted code using Shiki.
