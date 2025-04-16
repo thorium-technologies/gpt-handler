@@ -11,7 +11,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { CodeSnippetProps } from '../../../core/types/code';
 import { DEFAULT_SNIPPET_LANGUAGE } from '../../../core/constants/language';
 import { NotificationAlert } from './notification-alert';
-import { highlightCode } from '../../../infra/api/syntax/highlight.service';
+import { highlightCode } from '../../../infra/syntax/highlight.service';
 import { stripCodeFences } from '../../../core/utils/strip-code-fences';
 
 /**
